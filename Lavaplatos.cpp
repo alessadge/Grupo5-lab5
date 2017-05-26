@@ -1,13 +1,19 @@
+// Lavaplatos.cpp
+
 #include "Lavaplatos.h"
 
-Lavaplatos::Lavaplatos(int nivel){
-    this->nivel=nivel;
+Lavaplatos::Lavaplatos(string username, string password, string nombre, int edad, string ID, string numero,
+	int anoContratacion, int nivel) : Personal(username, password, nombre, edad, ID, numero)
+{
+    this -> nivel = nivel;
 }
-Lavaplatos::Lavaplatos(){
 
-}void Lavaplatos::setNivel(int nivel){
-   this-> nivel=nivel;
+// nivel
+void Lavaplatos::setNivel(int nivel)
+{
+   this -> nivel = nivel;
 }
-int Lavaplatos::getNivel(){
+int Lavaplatos::getNivel()
+{
    return nivel;
 }

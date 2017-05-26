@@ -1,20 +1,31 @@
+// Administrador.cpp
+
 #include "Administrador.h"
 
-Administrador::Administrador(int contratados,int despedidos){
-    this->contratados=contratados;
-    this->despedidos=despedidos;
+Administrador::Administrador(string username, string password, string nombre, int edad, string ID, string numero,
+	int anoContratacion, int contratados, int despedidos) : Personal(username, password, nombre, edad, ID, numero,
+	anoContratacion)
+{
+    this -> contratados = contratados;
+    this -> despedidos = despedidos;
 }
-Administrador::Administrador(){
 
-}void Administrador::setContratados(int contratados){
-   this-> contratados=contratados;
+// contratados
+void Administrador::setContratados(int contratados)
+{
+   this -> contratados = contratados;
 }
-int Administrador::getContratados(){
+int Administrador::getContratados()
+{
    return contratados;
 }
-void Administrador::setDespedidos(int despedidos){
-   this-> despedidos=despedidos;
+
+// despedidos
+void Administrador::setDespedidos(int despedidos)
+{
+   this -> despedidos = despedidos;
 }
-int Administrador::getDespedidos(){
+int Administrador::getDespedidos()
+{
    return despedidos;
 }
