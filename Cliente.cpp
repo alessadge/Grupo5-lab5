@@ -1,6 +1,6 @@
 #include "Cliente.h"
 
-Cliente::Cliente(string direccion,int rating){
+Cliente::Cliente(string username,string password,string nombre,int edad, string ID,string numero,string direccion,int rating):Usuario(username, password, nombre,edad,ID,numero){
     this->direccion=direccion;
     this->rating=rating;
 }
