@@ -1,4 +1,4 @@
-in: Main.o Usuario.o Cliente.o  Personal.o Administrador.o Chef.o Lavaplatos.o Meseros.o 
+Main: Main.o Usuario.o Cliente.o  Personal.o Administrador.o Chef.o Lavaplatos.o Meseros.o 
 	g++ Main.o Usuario.o Cliente.o  Personal.o Administrador.o Chef.o Lavaplatos.o Meseros.o -o Main
 
 Main.o: Main.cpp Usuario.h Cliente.h  Personal.h Administrador.h Chef.h Lavaplatos.h Meseros.h 

@@ -6,7 +6,7 @@ using namespace std;
 
 #ifndef CLIENTE_H
 #define CLIENTE_H
-class Cliente:public Usuarios{
+class Cliente:public Usuario{
     protected:
         string direccion;
         int rating;

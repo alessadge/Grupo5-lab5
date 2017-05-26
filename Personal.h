@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
-#include "Usuarios.h"
+#include "Usuario.h"
 
 using namespace std;
 
 #ifndef PERSONAL_H
 #define PERSONAL_H
-class Personal:public Usuarios{
+class Personal:public Usuario{
     protected:
         int anoContratacion;
     public:
