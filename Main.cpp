@@ -8,6 +8,8 @@
 #include <iosream>
 #include <string>
 #include <vector>
+
+int verificarID(int,vector<Usuario*>,string);
 using namespace std;
 int main(){
     string contra, usuario;
@@ -19,17 +21,56 @@ int main(){
         cout<<"1.) LOGIN CLIENTE"<<endl;
         cout<<"2.) LOGIN PERSONAL"<<endl;
         cout<<"3.) Salir "<<endl;
+        cout<<"Escoja una opcion: "<<endl;
         cin>>opcion;
         if(opcion==1){
 	    string nombre;
-	    int edad;
+	    int edad,cont=0;
 	    string ID;
 	    string numero;
+	    string direccion;
+	    int rating;
 	    cout<<"Ingrese Usuario: "<<endl;
 	    cin>>usuario;
 	    cout<<"Ingrese contrasena: "<<endl;
 	    cin>>contra;
-	      
+	    cout<<"Ingrese un nombre: "<<endl
+	    cin>>nombre;
+	    cout<<"Ingrese su edad: "<<endl;
+            cin>>edad;
+	    while(edad<18){
+	       cout<<"Tiene que ser mayor de 18"<<endl;
+	       cout<<"Ingrese su edad: "<<endl;
+	       cin>>edad;
+	    }
+
+	    while(cont==0){
+		  cout<<"Ingrese su ID: "<<endl;
+		  cin>>ID;
+		  cont=1;
+	          for(int i=0; i<usuarios.size();i++){
+		      if(usuarios[i]==ID)
+			   cont=0;
+	    }
+ 
+	    }//fin while
+	    cout<<"Ingrese su numero de telefono"<<endl;
+	    cin>>numero;
+	    while(numero.size()<8){
+	       cout<<"Numero incorrecto debe tener 8 o mas digitos"<<endl<<"Intente nuevamente: "<<endl;
+	       cin>>numero;
+	    }  
+	    cout<<"Ingrese su direccion: "<<endl;
+	    cin>>direccion;
+	    cout<<"Ingrese un rating 1-5: "<<endl;
+	    cin>>rating;
+	    while(rating<1||rating>5){
+	       cout<<"El numero debe ser entre 1-5. Intente nuevamente: "<<endl;
+	       cin>>rating;
+	    }
+	    
+	    usuarios.push_back(new Cliente(username, password, nombre, edad, ID, numero, direccion, rating));
+	    cout<<"Se agrego un Cliente exitosamente"<<endl;
         }
         if(opcion==2) // LOGIN PERSONAL
         {
@@ -111,4 +152,14 @@ for(int i=0; i<usuarios.size();i++){
 }
 usuarios.clear();
 return 0;
+}
+
+int verificarID(int cont,Vector<*usuarios,string ID){
+   cont=1;
+   for(int i=0; i<usuarios.size();i++){
+      if(usuarios[i]==ID)
+	 cont=0;
+   }
+   
+return cont;
 }
