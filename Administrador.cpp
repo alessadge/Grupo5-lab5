@@ -3,8 +3,8 @@
 #include "Administrador.h"
 
 Administrador::Administrador(string username, string password, string nombre, int edad, string ID, string numero,
-	int anoContratacion, int contratados, int despedidos) : Personal(username, password, nombre, edad, ID, numero,
-	anoContratacion)
+	int anoContratacion, int contratados, int despedidos, double sueldo) : Personal(username, password, nombre, edad, ID,
+	numero, anoContratacion, sueldo)
 {
     this -> contratados = contratados;
     this -> despedidos = despedidos;

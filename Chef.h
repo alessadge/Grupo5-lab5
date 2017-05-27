@@ -16,8 +16,8 @@ class Chef : public Personal
         int rating;
 
     public:
-        Chef(string, string, string, int, string, string, int, string, int);
-        // username, password, nombre, edad, ID, numero, anoContratacion, platilloFavorito, rating
+        Chef(string, string, string, int, string, string, int, string, int, double);
+        // username, password, nombre, edad, ID, numero, anoContratacion, platilloFavorito, rating, sueldo
 
         // platilloFavorito
         string getPlatilloFavorito();

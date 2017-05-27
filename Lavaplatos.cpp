@@ -3,7 +3,7 @@
 #include "Lavaplatos.h"
 
 Lavaplatos::Lavaplatos(string username, string password, string nombre, int edad, string ID, string numero,
-	int anoContratacion, int nivel) : Personal(username, password, nombre, edad, ID, numero)
+	int anoContratacion, int nivel, double sueldo) : Personal(username, password, nombre, edad, ID, numero, sueldo)
 {
     this -> nivel = nivel;
 }

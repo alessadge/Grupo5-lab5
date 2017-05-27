@@ -15,8 +15,8 @@ class Lavaplatos : public Personal
         int nivel;
 
     public:
-        Lavaplatos(string, string, string, int, string, string, int, int);
-        // username, password, nombre, edad, ID, numero, anoContratacion, nivel
+        Lavaplatos(string, string, string, int, string, string, int, int, double);
+        // username, password, nombre, edad, ID, numero, anoContratacion, nivel, sueldo
 
         // nivel
         int getNivel();
