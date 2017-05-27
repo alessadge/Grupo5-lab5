@@ -22,7 +22,7 @@ void Meseros::setPlatillos(int n)
 {
 	lista.clear();
 
-	string temp;
+	string platillo;
 	for(int i = 1; i <= n; i++)
 	{
 		cout << "Platillo " << "#" << i << ": " << endl;

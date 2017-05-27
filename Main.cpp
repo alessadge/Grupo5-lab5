@@ -12,11 +12,11 @@
 
 string sueldoMenor(vector<Usuario*>);
 string sueldoMayor(vector<Usuario*>);
-int promedioSueldo(vector<Usuario*>);
+double promedioSueldo(vector<Usuario*>);
 int eliminar();
-Chef* agregarChef();
-Meseros* agregarMesero();
-Lavaplatos* agregarLavaplatos();
+Chef* agregarChef(vector<Usuario*>);
+Meseros* agregarMesero(vector<Usuario*>);
+Lavaplatos* agregarLavaplatos(vector<Usuario*>);
 
 using namespace std;
 int main()
@@ -162,17 +162,17 @@ int main()
 
 								if(opcion4 == 1)
 								{
-									usuarios.push_back(agregarChef());
+									usuarios.push_back(agregarChef(usuarios));
 									cout << "El chef se agrego exitosamente!" << endl;
 								}
 								if(opcion4 == 2)
 								{
-                                					usuarios.push_back(agregarLavaplatos());
+                                					usuarios.push_back(agregarLavaplatos(usuarios));
                             						cout << "El Lavaplatos se agrego exitosamente!" << endl;
 								}
 								if(opcion4 == 3)
 								{
-									usuarios.push_back(agregarMesero());
+									usuarios.push_back(agregarMesero(usuarios));
                             						cout << "El Mesero se agrego exitosamente!" << endl;
 								}
 							} // fin opcion 1
@@ -550,12 +550,12 @@ for(int i=0; i<usuarios.size();i++){
 usuarios.clear();
 return 0;
 }
+}}
 
-
-Chef* agregarChef()
+Chef* agregarChef(vector<Usuario*>usuarios)
 {
 	Chef* chef;
-	string nombre;
+	string nombre,usuario,contra;
     int edad,cont = 0;
     string ID;
     string numero;
@@ -565,7 +565,7 @@ Chef* agregarChef()
     cin >> usuario;
     cout << "Ingrese contrasena: " << endl;
     cin >> contra;
-    cout << "Ingrese un nombre: " << endl
+    cout << "Ingrese un nombre: " << endl;
     cin >> nombre;
     cout << "Ingrese su edad: " << endl;
     cin >> edad;
@@ -582,7 +582,7 @@ Chef* agregarChef()
         cont = 1;
         for(int i = 0; i < usuarios.size(); i++)
         {
-            if(usuarios[i] == ID)
+            if(usuarios[i]->getID() == ID)
             {
                 cont=0;
             }
@@ -605,17 +605,17 @@ Chef* agregarChef()
         cin >> rating;
     }
     double sueldo;
-    cout << "Ingrese el sueldo: " << endl
+    cout << "Ingrese el sueldo: " << endl;
     cin >> sueldo;
-    chef = new Chef(username, password, nombre, edad, ID, numero, 2017, platilloFavorito, rating,sueldo);
+    chef = new Chef(usuario, contra, nombre, edad, ID, numero, 2017, platilloFavorito, rating,sueldo);
 
 	return chef;
 }
 
-Lavaplatos* agregarLavaplatos()
+Lavaplatos* agregarLavaplatos(vector<Usuario*>usuarios)
 {
 	Lavaplatos* lavaplatos;
-	string nombre;
+	string nombre,usuario,contra;
     int edad,cont = 0, nivel;
     string ID;
     string numero;
@@ -625,7 +625,7 @@ Lavaplatos* agregarLavaplatos()
     cin >> usuario;
     cout << "Ingrese contrasena: " << endl;
     cin >> contra;
-    cout << "Ingrese un nombre: " << endl
+    cout << "Ingrese un nombre: " << endl;
     cin >> nombre;
     cout << "Ingrese su edad: " << endl;
     cin >> edad;
@@ -642,7 +642,7 @@ Lavaplatos* agregarLavaplatos()
         cont = 1;
         for(int i = 0; i < usuarios.size(); i++)
         {
-             if(usuarios[i]==ID)
+             if(usuarios[i]->getID()==ID)
              {
                     cont=0;
              }
@@ -659,14 +659,14 @@ Lavaplatos* agregarLavaplatos()
 	double sueldo;
     cout << "Ingrese el sueldo: " << endl;
     cin >> sueldo;
-    lavaplatos = new Lavaplatos(username, password, nombre, edad, ID, numero, 2017, nivel, sueldo);
+    lavaplatos = new Lavaplatos(usuario, contra, nombre, edad, ID, numero, 2017, nivel, sueldo);
 	return lavaplatos;
 }
 
-Meseros* agregarMesero()
+Meseros* agregarMesero(vector<Usuario*>usuarios)
 {
 	Meseros* mesero;
-	string nombre;
+	string nombre, usuario, contra;
     int edad,cont = 0;
     string ID;
     string numero;
@@ -676,7 +676,7 @@ Meseros* agregarMesero()
     cin >> usuario;
     cout << "Ingrese contrasena: " << endl;
     cin >> contra;
-    cout << "Ingrese un nombre: " << endl
+    cout << "Ingrese un nombre: " << endl;
     cin >> nombre;
     cout << "Ingrese su edad: " << endl;
     cin >> edad;
@@ -693,7 +693,7 @@ Meseros* agregarMesero()
         cont = 1;
         for(int i = 0; i < usuarios.size(); i++)
         {
-            if(usuarios[i] == ID)
+            if(usuarios[i]->getID() == ID)
             {
                 cont=0;
             }
@@ -709,7 +709,7 @@ Meseros* agregarMesero()
     double sueldo;
     cout << "Ingrese el sueldo: " << endl;
     cin >> sueldo;
-	mesero = new Meseros(username, password, nombre, edad, ID, numero, anoContratacion, sueldo);
+	mesero = new Meseros(usuario, contra, nombre, edad, ID, numero, 2017, sueldo);
 	return mesero;
 }
 
@@ -723,19 +723,19 @@ int eliminar()
 string sueldoMenor(vector<Usuario*> usuarios)
 {
 	string acum;
-	int sueldomenor = 100000000000000;
+	int sueldomenor = 100000000;
 	for(int i = 0; i < usuarios.size(); i++)
 	{
-		if(usuarios[i]->getSueldo()<sueldomenor)
+		if(reinterpret_cast<Personal*>(usuarios[i])->getSueldo()<sueldomenor)
 		{
-			sueldomenor=usuarios[i] -> getSueldo();
+			sueldomenor=reinterpret_cast<Personal*>(usuarios[i]) -> getSueldo();
 		}	
 	}
 	for(int i = 0; i < usuarios.size(); i++)
 	{
-		if(usuarios[i]->getSueldo()==sueldomenor)
+		if(reinterpret_cast<Personal*>(usuarios[i])->getSueldo()==sueldomenor)
 		{
-			acum = acum + usuarios[i] -> getNombre() + "\n";
+			acum = acum + reinterpret_cast<Personal*>(usuarios[i]) -> getNombre() + "\n";
 		}
 	}
 	return acum;
@@ -747,37 +747,37 @@ string sueldoMayor(vector<Usuario*> usuarios)
 	int sueldomayor = 0;
     for(int i = 0; i < usuarios.size(); i++)
     {
-        if(usuarios[i]->getSueldo()>sueldomayor)
+        if(reinterpret_cast<Personal*>(usuarios[i])->getSueldo()>sueldomayor)
         {
-            sueldomayor=usuarios[i]->getSueldo();
+            sueldomayor=reinterpret_cast<Personal*>(usuarios[i])->getSueldo();
         }
     }
     for(int i = 0; i < usuarios.size(); i++)
     {
-     	if(usuarios[i] -> getSueldo() == sueldomayor)
+     	if(reinterpret_cast<Personal*>(usuarios[i])-> getSueldo() == sueldomayor)
         {
-            acum= acum + usuarios[i] -> getNombre() + "\n";
+            acum= acum + reinterpret_cast<Personal*>(usuarios[i]) -> getNombre() + "\n";
         }
 	}
 	return acum;
 }
 
 
-int promedioSueldo(vector<Usuario*> usuarios){
+double promedioSueldo(vector<Usuario*> usuarios){
 int acum,cont=0;
 int size=usuarios.size();
 	for(int i=0; i<usuarios.size();i++){
 		if(reinterpret_cast<Chef*>(usuarios[i])){
-			acum=acum+usuarios[i]-> getSueldo();
+			acum=acum+reinterpret_cast<Personal*>(usuarios[i])-> getSueldo();
 			cont++;
 		}
 		if(reinterpret_cast<Meseros*>(usuarios[i])){
-			acum=acum+usuarios[i]-> getSueldo();
+			acum=acum+reinterpret_cast<Personal*>(usuarios[i])-> getSueldo();
 			cont++;
                 }
 
 		if(reinterpret_cast<Lavaplatos*>(usuarios[i])){
-			acum=acum+usuarios[i]-> getSueldo();
+			acum=acum+reinterpret_cast<Personal*>(usuarios[i])-> getSueldo();
 			cont++;
                 }
 	}
@@ -787,16 +787,3 @@ return promedio;
 }
 
 
-int promedioSueldo(vector<Usuario*> usuarios)
-{
-	int acum;
-	int size = usuarios.size();
-	for(int i=0; i<usuarios.size();i++)
-	{
-		acum = acum + usuarios[i]-> getSueldo();
-	}
-	double promedio;
-	promedio = acum / size;
-	return promedio;
-}
->>>>>>> b70b9641d4c6298eb4082567c7159499cd9ac0bc
