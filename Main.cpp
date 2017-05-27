@@ -16,7 +16,7 @@ int eliminar();
 Chef* agregarChef();
 Meseros* agregarMesero();
 Lavaplatos* agregarLavaplatos();
-int verificarID(int,vector<Usuario*>,string);
+
 using namespace std;
 int main(){
     string contra, usuario;
@@ -41,7 +41,7 @@ int main(){
 	    cin>>usuario;
 	    cout<<"Ingrese contrasena: "<<endl;
 	    cin>>contra;
-	    cout<<"Ingrese un nombre: "<<endl
+	    cout<<"Ingrese un nombre: "<<endl;
 	    cin>>nombre;
 	    cout<<"Ingrese su edad: "<<endl;
             cin>>edad;
@@ -56,7 +56,7 @@ int main(){
 		  cin>>ID;
 		  cont=1;
 	          for(int i=0; i<usuarios.size();i++){
-		      if(usuarios[i]==ID)
+		      if(usuarios[i]->getID()==ID)
 			   cont=0;
 	    }
  
@@ -76,7 +76,7 @@ int main(){
 	       cin>>rating;
 	    }
 	    
-	    usuarios.push_back(new Cliente(username, password, nombre, edad, ID, numero, direccion, rating));
+	    usuarios.push_back(new Cliente(usuario, contra, nombre, edad, ID, numero, direccion, rating));
 	    cout<<"Se agrego un Cliente exitosamente"<<endl;
         }
         if(opcion==2) // LOGIN PERSONAL
@@ -198,9 +198,10 @@ int main(){
                                                         		cin>>pos;
                                                         		cout<<"Ingrese porcentaje que desearia inflarle: "<<endl;
                                                         		cin>>porcentaje;
-                                                        			sueldo = (dynamic_cast<Chef*>(usuarios[pos]))->getSueldo();
-                                                        			porcentaje = sueldo + (sueldo*porcentaje)
-                                                        			(dynamic_cast<Chef*>(usuarios[pos]))->setSueldo(porcentaje);
+										Chef* chef = reinterpret_cast<Chef*>(usuarios[pos]);
+                                                        			sueldo = chef->getSueldo();
+                                                        			porcentaje = sueldo + (sueldo*porcentaje);
+                                                        			chef->setSueldo(porcentaje);
                                                         			cout<<"Se inflo exitosamente!"<<endl;
 								}
 					
@@ -212,9 +213,12 @@ int main(){
                                                                         cin>>pos;
                                                                         cout<<"Ingrese porcentaje que desearia inflarle: "<<endl;
                                                                         cin>>porcentaje;
-                                                                        	sueldo = (dynamic_cast<Lavaplatos*>(usuarios[pos]))->getSueldo();
-                                                                        	porcentaje = sueldo + (sueldo*porcentaje)
-                                                                        	(dynamic_cast<Lavaplatos*>(usuarios[pos]))->setSueldo(porcentaje);
+										Lavaplatos* lavaplato = reinterpret_cast<Lavaplatos*>(usuarios[pos]);
+                                                                        	sueldo = lavaplato->getSueldo();
+                                                                        	porcentaje = sueldo + (sueldo*porcentaje);
+										
+																		
+                                                                        	lavaplato->setSueldo(porcentaje);
                                                                         	cout<<"Se inflo exitosamente!"<<endl;
 
 								}
@@ -227,9 +231,10 @@ int main(){
                                                                         cin>>pos;
                                                                         cout<<"Ingrese porcentaje que desearia inflarle: "<<endl;
                                                                         cin>>porcentaje;
-                                                                        	sueldo = (dynamic_cast<Meseros*>(usuarios[pos]))->getSueldo();
-                                                                        	porcentaje = sueldo + (sueldo*porcentaje)
-                                                                        	(dynamic_cast<Meseros*>(usuarios[pos]))->setSueldo(porcentaje);
+										Meseros* mesero = reinterpret_cast<Meseros*>(usuarios[pos]);
+                                                                        	sueldo = mesero->getSueldo();
+                                                                        	porcentaje = sueldo + (sueldo*porcentaje);
+                                                                        	mesero->setSueldo(porcentaje);
                                                                         	cout<<"Se inflo exitosamente!"<<endl;
 
 								}
@@ -260,7 +265,7 @@ int main(){
 						cout<<"Contrasena incorrecta"<<endl;
 					}
 		   		}
-		   		else if(opcion2 == 2) // Chef
+		   		}else if(opcion2 == 2) // Chef
 		   		{
 		   			/*string platilloFavorito;
 		   			int rating;
@@ -283,9 +288,9 @@ int main(){
 		   			cout << "Ingrese la posicion del Chef: ";
 		   			cin >> op2;
 
-		   			if(dynamic_cast<Chef*> (usuarios.at(op2)))
+		   			if(reinterpret_cast<Chef*> (usuarios.at(op2)))
 		   			{
-		   				C = dynamic_cast<Chef*> (usuario.at(op2));
+		   				C = reinterpret_cast<Chef*> (usuario.at(op2));
 
 		   				int opcionChef = 0;
 		   				while(opcionChef != 3)
@@ -301,9 +306,9 @@ int main(){
 		   						int op_LP;
 		   						cout << "Escoja la posicion del Lavaplatos al que desea gritarle: ";
 		   						cin >> op_LP;
-		   						if(dynamic_cast<Lavaplatos*> (usuarios.at(op_LP)))
+		   						if(reinterpret_cast<Lavaplatos*> (usuarios.at(op_LP)))
 		   						{
-		   							Lavaplatos* LP = dynamic_cast<Lavaplatos*> (usuarios.at(i));
+		   							Lavaplatos* LP = reinterpret_cast<Lavaplatos*> (usuarios.at(op_LP));
 
 		   							int gritar;
 		   							cout << "Ingrese por cuanto desmotivara al Lavaplatos: ";
@@ -324,9 +329,9 @@ int main(){
 		   						int op_LP;
 		   						cout << "Escoja la posicion del Lavaplatos al que desea agradar: ";
 		   						cin >> op_LP;
-		   						if(dynamic_cast<Lavaplatos*> (usuarios.at(op_LP)))
+		   						if(reinterpret_cast<Lavaplatos*> (usuarios.at(op_LP)))
 		   						{
-		   							Lavaplatos* LP = dynamic_cast<Lavaplatos*> (usuario.at(i));
+		   							Lavaplatos* LP = reinterpret_cast<Lavaplatos*> (usuario.at(op_LP));
 
 		   							int agradar;
 		   							cout << "Ingrese por cuanto motivara al Lavaplatos: ";
@@ -363,9 +368,9 @@ int main(){
 		   			cout << "Ingrese la posicion del Lavaplatos: ";
 		   			cin >> op3;
 
-		   			if(dynamic_cast<Lavaplatos*> (usuarios.at(op3)))
+		   			if(reinterpret_cast<Lavaplatos*> (usuarios.at(op3)))
 		   			{
-		   				LP = dynamic_cast<Lavaplatos*> (usuario.at(op3));
+		   				LP = reinterpret_cast<Lavaplatos*> (usuario.at(op3));
 
 		   				int opcionLP = 0;
 		   				while(opcionLP != 3)
@@ -413,15 +418,15 @@ int main(){
 		   		}
 		   		else if(opcion2 == 4) // Mesero
 		   		{
-		   			Mesero* M;
+		   			Meseros* M;
 
 		   			int op4;
 		   			cout << "Ingrese la posicion del Mesero: ";
 		   			cin >> op4;
 
-		   			if(dynamic_cast<Mesero*> (usuarios.at(i)))
+		   			if(reinterpret_cast<Meseros*> (usuarios.at(op4)))
 		   			{
-		   				M = dynamic_cast<Mesero*> (usuarios.at(i));
+		   				M = reinterpret_cast<Meseros*> (usuarios.at(op4));
 
 		   				int opcionMesero;
 		   				cout << "MESERO" << endl;
@@ -453,6 +458,7 @@ int main(){
 		   			{
 		   				cout << "El Usuario que escogio no es un Mesero." << endl;
 		   			}
+					delete M;
 		   		}
 		   		else
 		   		{
@@ -469,15 +475,6 @@ usuarios.clear();
 return 0;
 }
 
-int verificarID(int cont,vector<*usuarios>,string ID){
-   cont=1;
-   for(int i=0; i<usuarios.size();i++){
-      if(usuarios[i]==ID)
-	 cont=0;
-   }
-   
-return cont;
-}
 Chef* agregarChef(){
 Chef* chef;
 	string nombre;
@@ -528,6 +525,7 @@ Chef* chef;
 	chef=new Chef(username, password, nombre, edad, ID, numero, 2017, platilloFavorito, rating,sueldo);
 return chef;
 }
+
 
 Lavaplatos* agregarLavaplatos(){
 Lavaplatos* lavaplatos;
@@ -634,7 +632,7 @@ int sueldomenor=100000000000000;
 		if(usuarios[i]->getSueldo()==sueldomenor){
 			acum= acum+usuarios[i]->getNombre()+"\n"
 		}
-
+	}
 return acum;
 }
 
@@ -650,7 +648,7 @@ int sueldomayor=0;
                 if(usuarios[i]->getSueldo()==sueldomayor){
                         acum=acum+ usuarios[i]->getNombre()+"\n"
                 }
-
+	}
 return acum;
 }
 
@@ -660,10 +658,8 @@ int size=usuarios.size();
 	for(int i=0; i<usuarios.size();i++){
 		acum=acum+usuarios[i]-> getSueldo();
 	}
-double promedio;
+	double promedio;
 	promedio=acum/size;
 return promedio;
 }
-
-
 
