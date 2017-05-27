@@ -52,7 +52,7 @@ int main()
 	       cout<<"Tiene que ser mayor de 18"<<endl;
 	       cout<<"Ingrese su edad: "<<endl;
 	       cin>>edad;
-	    }
+	    }//fin while
 
 	    while(cont==0){
 		  cout<<"Ingrese su ID: "<<endl;
@@ -61,7 +61,7 @@ int main()
 	          for(int i=0; i<usuarios.size();i++){
 		      if(usuarios[i]->getID()==ID)
 			   cont=0;
-	    }
+	    }//fin while
  
 	    }//fin while
 	    cout<<"Ingrese su numero de telefono"<<endl;
@@ -69,7 +69,7 @@ int main()
 	    while(numero.size()<8){
 	       cout<<"Numero incorrecto debe tener 8 o mas digitos"<<endl<<"Intente nuevamente: "<<endl;
 	       cin>>numero;
-	    }  
+	    }//fin while
 	    cout<<"Ingrese su direccion: "<<endl;
 	    cin>>direccion;
 	    cout<<"Ingrese un rating 1-5: "<<endl;
@@ -77,11 +77,11 @@ int main()
 	    while(rating<1||rating>5){
 	       cout<<"El numero debe ser entre 1-5. Intente nuevamente: "<<endl;
 	       cin>>rating;
-	    }
+	    }//fin while
 	    
 	    usuarios.push_back(new Cliente(usuario, contra, nombre, edad, ID, numero, direccion, rating));
 	    cout<<"Se agrego un Cliente exitosamente"<<endl;
-        }
+        }//fin opcion 1
         if(opcion==2) // LOGIN PERSONAL
         {
         	string username, password, nombre, ID, numero;
@@ -140,25 +140,25 @@ int main()
 						while(opcion3 != 5)
 						{
 							cout << "ADMIN" << endl;
-                        	cout << "1. Contratar empleado" << endl;
-                        	cout << "2. Despedir empleado" << endl;
-                       		cout << "3. Aumentar/decrementar de acuerdo a la inflacion" << endl;
-                       		cout << "4. Conseguir empleados con menor sueldo" << endl;
-                	    	cout << "5. Conseguir empleados con mayor sueldo" << endl;
+                       					cout << "1. Contratar empleado" << endl;
+                        				cout << "2. Despedir empleado" << endl;
+                      			 		cout << "3. Aumentar/decrementar de acuerdo a la inflacion" << endl;
+                       					cout << "4. Conseguir empleados con menor sueldo" << endl;
+                	    				cout << "5. Conseguir empleados con mayor sueldo" << endl;
 							cout << "6. Conseguir promedio de sueldos" << endl;
 							cout << "7. Salir" << endl;
-        	            	cout << "Escoja una opcion: ";
+        	            				cout << "Escoja una opcion: ";
 							cin >> opcion3;
 						
 							if(opcion3 == 1)
 							{
 								int opcion4;
 								cout << "Agregar" << endl;
-                            	cout << "1. Chef" << endl;
-                            	cout << "2. Lavaplatos" << endl;
-                            	cout << "3. Mesero" << endl;
-        	                	cout << "Escoja una opcion: ";
-	                        	cin >> opcion4;
+                            					cout << "1. Chef" << endl;
+                            					cout << "2. Lavaplatos" << endl;
+                            					cout << "3. Mesero" << endl;
+        	                				cout << "Escoja una opcion: ";
+	                        				cin >> opcion4;
 
 								if(opcion4 == 1)
 								{
@@ -167,13 +167,13 @@ int main()
 								}
 								if(opcion4 == 2)
 								{
-                                	usuarios.push_back(agregarLavaplatos());
-                            		cout << "El Lavaplatos se agrego exitosamente!" << endl;
+                                					usuarios.push_back(agregarLavaplatos());
+                            						cout << "El Lavaplatos se agrego exitosamente!" << endl;
 								}
 								if(opcion4 == 3)
 								{
 									usuarios.push_back(agregarMesero());
-                            		cout << "El Mesero se agrego exitosamente!" << endl;
+                            						cout << "El Mesero se agrego exitosamente!" << endl;
 								}
 							} // fin opcion 1
 
@@ -197,49 +197,49 @@ int main()
 									if(opcion5 == 1)
 									{
 										int pos;
-                                    	double porcentaje;
-                                    	double sueldo;
-                                    	cout << "Ingrese posicion que desea modificar: " << endl;
-                                    	cin >> pos;
-                                    	cout << "Ingrese porcentaje que desearia inflarle: " << endl;
-                                    	cin >> porcentaje;
+                                    						double porcentaje;
+                                    						double sueldo;
+                                    						cout << "Ingrese posicion que desea modificar: " << endl;
+                                    						cin >> pos;
+                                    						cout << "Ingrese porcentaje que desearia inflarle: " << endl;
+                                    						cin >> porcentaje;
 										Chef* chef = reinterpret_cast<Chef*>(usuarios[pos]);
-                                    	sueldo = chef -> getSueldo();
-                                    	porcentaje = sueldo + (sueldo*porcentaje);
-                                    	chef -> setSueldo(porcentaje);
-                                    	cout << "Se inflo exitosamente!" << endl;
+                                    						sueldo = chef -> getSueldo();
+                                    						porcentaje = sueldo + (sueldo*porcentaje);
+                                    						chef -> setSueldo(porcentaje);
+                                    						cout << "Se inflo exitosamente!" << endl;
 									}
 					
 									if(opcion5 == 2)
 									{
 										int pos;
-                                    	double porcentaje;
-                                    	double sueldo;
-                                    	cout << "Ingrese posicion que desea modificar: " << endl;
-                                    	cin >> pos;
-                                    	cout << "Ingrese porcentaje que desearia inflarle: " << endl;
-                                    	cin >> porcentaje;
+                                    						double porcentaje;
+                                    						double sueldo;
+                                    						cout << "Ingrese posicion que desea modificar: " << endl;
+                                    						cin >> pos;
+                                    						cout << "Ingrese porcentaje que desearia inflarle: " << endl;
+                                    						cin >> porcentaje;
 										Lavaplatos* lavaplato = reinterpret_cast<Lavaplatos*>(usuarios[pos]);
-                                    	sueldo = lavaplato -> getSueldo();
-                                    	porcentaje = sueldo + (sueldo * porcentaje);
-                                    	lavaplato -> setSueldo(porcentaje);
-                                    	cout << "Se inflo exitosamente!" << endl;
+                                    						sueldo = lavaplato -> getSueldo();
+                                    						porcentaje = sueldo + (sueldo * porcentaje);
+                                    						lavaplato -> setSueldo(porcentaje);
+                                  					  	cout << "Se inflo exitosamente!" << endl;
 									}
 			
 									if(opcion5 == 3)
 									{
 										int pos;
-                                    	double porcentaje;
-                                    	double sueldo;
-                                    	cout << "Ingrese posicion que desea modificar: " << endl;
-                                    	cin >> pos;
-                                    	cout << "Ingrese porcentaje que desearia inflarle: " << endl;
-                                    	cin >> porcentaje;
+                                   					 	double porcentaje;
+                                    						double sueldo;
+                                    						cout << "Ingrese posicion que desea modificar: " << endl;
+                                    						cin >> pos;
+                                    						cout << "Ingrese porcentaje que desearia inflarle: " << endl;
+                                    						cin >> porcentaje;
 										Meseros* mesero = reinterpret_cast<Meseros*> (usuarios[pos]);
-                                    	sueldo = mesero -> getSueldo();
-                                    	porcentaje = sueldo + (sueldo * porcentaje);
-                                    	mesero -> setSueldo(porcentaje);
-                                    	cout << "Se inflo exitosamente!" << endl;
+                                    						sueldo = mesero -> getSueldo();
+                                    						porcentaje = sueldo + (sueldo * porcentaje);
+                                    						mesero -> setSueldo(porcentaje);
+                                  					  	cout << "Se inflo exitosamente!" << endl;
 
 									}
 					
@@ -254,7 +254,7 @@ int main()
 						if(opcion3 == 5)
 						{
 							string acum = sueldoMayor(usuarios);
-                            cout << "Los empleados con el mayor sueldo son: " << endl << acum << endl;
+                           				 cout << "Los empleados con el mayor sueldo son: " << endl << acum << endl;
 	
 						}
 		
@@ -262,7 +262,7 @@ int main()
 						{
 							double promedio = promedioSueldo(usuarios);
 							cout << "El promedio de sueldo es de: " << promedio << endl;
-		                }				
+		         		       }				
 	   				
 						
 					
@@ -470,7 +470,7 @@ int main()
 	    	} // fin while opcion2
         }
     } // fin while
-<<<<<<< HEAD
+
 ofstream archivo1("Cliente.txt",std::ios_base::app);
 ofstream archivo2("Chef.txt",std::ios_base::app);
 ofstream archivo3("Administrador.txt",std::ios_base::app);
@@ -762,7 +762,7 @@ string sueldoMayor(vector<Usuario*> usuarios)
 	return acum;
 }
 
-<<<<<<< HEAD
+
 int promedioSueldo(vector<Usuario*> usuarios){
 int acum,cont=0;
 int size=usuarios.size();
@@ -786,7 +786,7 @@ int size=usuarios.size();
 return promedio;
 }
 
-=======
+
 int promedioSueldo(vector<Usuario*> usuarios)
 {
 	int acum;
