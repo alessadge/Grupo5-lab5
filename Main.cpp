@@ -287,7 +287,7 @@ usuarios.clear();
 return 0;
 }
 
-int verificarID(int cont,Vector<*usuarios,string ID){
+int verificarID(int cont,vector<*usuarios>,string ID){
    cont=1;
    for(int i=0; i<usuarios.size();i++){
       if(usuarios[i]==ID)
@@ -482,5 +482,6 @@ double promedio;
 	promedio=acum/size;
 return promedio;
 }
+
 
 
