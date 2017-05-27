@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 string sueldoMenor(vector<Usuario*>);
 string sueldoMayor(vector<Usuario*>);
@@ -468,6 +469,79 @@ int main(){
 	    	} // fin while opcion2
         }
     } // fin while
+ofstream archivo1("Cliente.txt",std::ios_base::app);
+ofstream archivo2("Chef.txt",std::ios_base::app);
+ofstream archivo3("Administrador.txt",std::ios_base::app);
+ofstream archivo4("Lavaplatos.txt",std::ios_base::app);
+ofstream archivo5("Meseros.txt",std::ios_base::app);
+
+		for(int i=0; i<usuarios.size();i++)
+		{
+			if(reinterpret_cast <Cliente*>(usuarios[i])){
+				archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getUsername() <<' ';
+				archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getPassword() <<' ';
+				archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getNombre() <<' ';
+                                archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getEdad() <<' ';
+				archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getID() <<' ';
+                                archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getNumero() <<' ';
+				archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getDireccion() <<' ';
+                                archivo1 << reinterpret_cast <Cliente*>(usuarios[i]) -> getRating() <<' ';
+
+
+			}
+			if(reinterpret_cast <Chef*>(usuarios[i])){
+				archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getUsername() <<' ';
+                                archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getPassword() <<' ';
+                                archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getNombre() <<' ';
+                                archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getEdad() <<' ';
+                                archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getID() <<' ';
+                                archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getNumero() <<' ';
+                                archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getPlatilloFavorito() <<' ';
+                                archivo2 << reinterpret_cast <Chef*>(usuarios[i]) -> getRating() <<' ';
+
+			}
+			if(reinterpret_cast <Administrador*>(usuarios[i])){
+				archivo3 << reinterpret_cast <Administrador*>(usuarios[i]) -> getUsername() <<' ';
+                                archivo3 << reinterpret_cast <Administrador*>(usuarios[i]) -> getPassword() <<' ';
+                                archivo3 << reinterpret_cast <Administrador*>(usuarios[i]) -> getNombre() <<' ';
+                                archivo3 << reinterpret_cast <Administrador*>(usuarios[i]) -> getEdad() <<' ';
+                                archivo3 << reinterpret_cast <Administrador*>(usuarios[i])-> getID() <<' ';
+                                archivo3 << reinterpret_cast <Administrador*>(usuarios[i])-> getNumero() <<' ';
+                                archivo3 << reinterpret_cast <Administrador*>(usuarios[i])-> getAnoContratacion() <<' ';
+
+                        }
+                        if(reinterpret_cast <Lavaplatos*>(usuarios[i])){
+				archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i]) -> getUsername() <<' ';
+                                archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i]) -> getPassword() <<' ';
+                                archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i]) -> getNombre() <<' ';
+                                archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i])-> getEdad() <<' ';
+                                archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i]) -> getID() <<' ';
+                                archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i]) -> getNumero() <<' ';
+                                archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i])-> getAnoContratacion() <<' ';
+                                archivo4 << reinterpret_cast <Lavaplatos*>(usuarios[i])-> getNivel() <<' ';
+
+                   	}
+                        if(reinterpret_cast <Meseros*>(usuarios[i])){
+				archivo5 << reinterpret_cast <Meseros*>(usuarios[i]) -> getUsername() <<' ';
+                                archivo5 << reinterpret_cast <Meseros*>(usuarios[i])-> getPassword() <<' ';
+                                archivo5 << reinterpret_cast <Meseros*>(usuarios[i]) -> getNombre() <<' ';
+                                archivo5 << reinterpret_cast <Meseros*>(usuarios[i]) -> getEdad() <<' ';
+                                archivo5 << reinterpret_cast <Meseros*>(usuarios[i])-> getID() <<' ';
+                                archivo5 << reinterpret_cast <Meseros*>(usuarios[i])-> getNumero() <<' ';
+                                archivo5 << reinterpret_cast <Meseros*>(usuarios[i])-> getAnoContratacion() <<' ';
+
+                        }
+		}
+		archivo1.close();
+		archivo2.close();
+		archivo3.close();
+                archivo4.close();
+                archivo5.close();
+
+		cout<< "\nArchivo agregado correctamente"<<endl;
+	
+
+
 for(int i=0; i<usuarios.size();i++){
    delete usuarios[i];
 }
@@ -653,13 +727,25 @@ return acum;
 }
 
 int promedioSueldo(vector<Usuario*> usuarios){
-int acum;
+int acum,cont=0;
 int size=usuarios.size();
 	for(int i=0; i<usuarios.size();i++){
-		acum=acum+usuarios[i]-> getSueldo();
+		if(reinterpret_cast<Chef*>(usuarios[i])){
+			acum=acum+usuarios[i]-> getSueldo();
+			cont++;
+		}
+		if(reinterpret_cast<Meseros*>(usuarios[i])){
+			acum=acum+usuarios[i]-> getSueldo();
+			cont++;
+                }
+
+		if(reinterpret_cast<Lavaplatos*>(usuarios[i])){
+			acum=acum+usuarios[i]-> getSueldo();
+			cont++;
+                }
 	}
 	double promedio;
-	promedio=acum/size;
+	promedio=acum/cont;
 return promedio;
 }
 
