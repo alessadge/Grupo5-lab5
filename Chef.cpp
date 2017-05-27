@@ -3,7 +3,8 @@
 #include "Chef.h"
 
 Chef::Chef(string username, string password, string nombre, int edad, string ID, string numero, int anoContratacion,
-	string platilloFavorito, int rating) : Personal(username, password, nombre, edad, ID, numero, anoContratacion)
+	string platilloFavorito, int rating, double sueldo) : Personal(username, password, nombre, edad, ID, numero,
+	anoContratacion, sueldo)
 {
     this -> platilloFavorito = platilloFavorito;
     this -> rating = rating;

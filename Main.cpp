@@ -129,15 +129,197 @@ int main(){
 		   		}
 		   		else if(opcion2 == 2) // Chef
 		   		{
+		   			/*string platilloFavorito;
+		   			int rating;
 
+		   			// platilloFavorito
+		   			cout << "Ingrese su platillo favorito: ";
+		   			cin >> platilloFavorito;
+
+		   			// rating
+		   			cout << "Ingrese el rating: ";
+		   			cin >> rating
+
+		   			// Agrega el Chef al vector de Usuario.
+		   			usuarios.push_back(new Chef(username, password, nombre, edad, ID, numero, anoContratacion,
+		   				platilloFavorito, rating)); */
+
+		   			Chef* C;
+
+		   			int op2;
+		   			cout << "Ingrese la posicion del Chef: ";
+		   			cin >> op2;
+
+		   			if(dynamic_cast<Chef*> (usuarios.at(op2)))
+		   			{
+		   				C = dynamic_cast<Chef*> (usuario.at(op2));
+
+		   				int opcionChef = 0;
+		   				while(opcionChef != 3)
+		   				{
+		   					cout << "CHEF" << endl;
+		   					cout << "1. Gritarle a un Lavaplatos" << endl;
+		   					cout << "2. Agradar a un Lavaplatos" << endl;
+		   					cout << "3. Salir" << endl;
+		   					cin >> opcionChef;
+
+		   					if(opcionChef == 1) // Gritarle a un Lavaplatos
+		   					{
+		   						int op_LP;
+		   						cout << "Escoja la posicion del Lavaplatos al que desea gritarle: ";
+		   						cin >> op_LP;
+		   						if(dynamic_cast<Lavaplatos*> (usuarios.at(op_LP)))
+		   						{
+		   							Lavaplatos* LP = dynamic_cast<Lavaplatos*> (usuarios.at(i));
+
+		   							int gritar;
+		   							cout << "Ingrese por cuanto desmotivara al Lavaplatos: ";
+		   							cin >> gritar;
+
+		   							LP -> setNivel(LP -> getNivel() - gritar);
+		   							cout << "Gordon Ramsey was here." << endl;
+
+		   							delete LP;
+		   						}
+		   						else
+		   						{	
+		   							cout << "El Usuario que escogio no es un Lavaplatos." << endl;
+		   						}
+		   					}
+		   					else if(opcionChef == 2) // Agradar a un Lavaplatos
+		   					{	
+		   						int op_LP;
+		   						cout << "Escoja la posicion del Lavaplatos al que desea agradar: ";
+		   						cin >> op_LP;
+		   						if(dynamic_cast<Lavaplatos*> (usuarios.at(op_LP)))
+		   						{
+		   							Lavaplatos* LP = dynamic_cast<Lavaplatos*> (usuario.at(i));
+
+		   							int agradar;
+		   							cout << "Ingrese por cuanto motivara al Lavaplatos: ";
+		   							cin >> agradar;
+
+		   							LP -> setNivel(LP -> getNivel() + agradar);
+		   							cout << "Good job mate." << endl;
+
+		   							delete LP;
+		   						}
+		   						else
+		   						{
+		   							cout << "El Usuario que escogio no es un Lavaplatos." << endl;
+		   						}
+		   					}
+		   					else
+		   					{
+		   						cout << "Debe escoger una opcion valida." << endl;
+		   					}
+		   				}
+		   				delete C;
+		   			}
+		   			else
+		   			{
+		   				cout << "El Usuario que escogio no es un Chef." << endl;
+		   				break;
+		   			}
 		   		}
 		   		else if(opcion2 == 3) // Lavaplatos
 		   		{
+		   			Lavaplatos* LP;
 
+		   			int op3;
+		   			cout << "Ingrese la posicion del Lavaplatos: ";
+		   			cin >> op3;
+
+		   			if(dynamic_cast<Lavaplatos*> (usuarios.at(op3)))
+		   			{
+		   				LP = dynamic_cast<Lavaplatos*> (usuario.at(op3));
+
+		   				int opcionLP = 0;
+		   				while(opcionLP != 3)
+		   				{
+		   					cout << "LAVAPLATOS" << endl;
+		   					cout << "1. Renunciar" << endl;
+		   					cout << "2. Pedir Aumento" << endl;
+		   					cout << "3. Salir" << endl;
+		   					cin >> opcionLP;
+
+		   					if(opcionLP == 1) // Renunciar
+		   					{
+		   						if(LP -> getNivel() <= 25)
+		   						{
+		   							cout << "Ok, bye." << endl;
+		   						}
+		   						else
+		   						{
+		   							cout << "No puede renunciar." << endl;
+		   						}
+		   					}
+		   					else if(opcionLP == 2) // Pedir Aumento
+		   					{
+		   						if(LP -> getNivel() >= 100)
+		   						{
+		   							LP -> setNivel(LP -> getNivel() + (LP -> getNivel() * 0.10));
+		   							cout << "You got it." << endl;
+		   						}
+		   						else
+		   						{
+		   							cout << "No puede pedir aumento." << endl;
+		   						}
+		   					}
+		   					else
+		   					{
+		   						cout << "El Usuario que escogio no es un Lavaplatos." << endl;
+		   					}
+		   				}
+		   				delete LP;
+		   			}
+		   			else
+		   			{
+		   				cout << "El Usuario que escogio no es un Lavaplatos." << endl;
+		   			}
 		   		}
 		   		else if(opcion2 == 4) // Mesero
 		   		{
+		   			Mesero* M;
 
+		   			int op4;
+		   			cout << "Ingrese la posicion del Mesero: ";
+		   			cin >> op4;
+
+		   			if(dynamic_cast<Mesero*> (usuarios.at(i)))
+		   			{
+		   				M = dynamic_cast<Mesero*> (usuarios.at(i));
+
+		   				int opcionMesero;
+		   				cout << "MESERO" << endl;
+		   				cout << "1. Agregar Un Platillo" << endl;
+		   				cout << "2. Agregar Todos los Platillos" << endl;
+		   				cout << "3. Salir" << endl;
+		   				cin >> opcionMesero;
+
+		   				if(opcionMesero == 1)
+		   				{
+		   					string platillo;
+		   					cout << "Ingrese un platillo: ";
+		   					M -> setLista(platillo);
+
+		   					cout << "Platillo agregado correctamente." << endl;
+		   				}
+		   				else if(opcionMesero == 2)
+		   				{
+		   					int n;
+		   					cout << "Ingrese el numero de platillos que va a ingresar: ";
+		   					M -> setPlatillos(n);
+		   				}
+		   				else
+		   				{
+		   					cout << "Debe escoger una opcion valida." << endl;
+		   				}
+		   			}
+		   			else
+		   			{
+		   				cout << "El Usuario que escogio no es un Mesero." << endl;
+		   			}
 		   		}
 		   		else
 		   		{

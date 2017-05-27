@@ -1,3 +1,5 @@
+// Meseros.h
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,13 +10,21 @@ using namespace std;
 
 #ifndef MESEROS_H
 #define MESEROS_H
-class Meseros:public Personal{
+
+class Meseros : public Personal
+{
     private:
-	vector<string> lista;
+		vector<string> lista;
+
     public:
-        Meseros(string,string,string,int,string,string,int);
-        Meseros();
-	string getLista(int);
-	void setLista(string);
+    	Meseros();
+        Meseros(string, string, string, int, string, string, int, double);
+
+        // lista
+		string getLista(int);
+		void setLista(string);
+
+		void setPlatillos(int);
 };
+
 #endif

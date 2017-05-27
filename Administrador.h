@@ -16,8 +16,8 @@ class Administrador : public Personal
         int despedidos;
 
     public:
-        Administrador(string, string, string, int, string, string, int, int, int);
-        // username, password, nombre, edad, ID, numero, anoContratacion, contratados, despedidos
+        Administrador(string, string, string, int, string, string, int, int, int, double);
+        // username, password, nombre, edad, ID, numero, anoContratacion, contratados, despedidos, sueldo
 
         // contratados
         int getContratados();
